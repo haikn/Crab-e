@@ -12,6 +12,20 @@ export default function CaseActive({ item, onRun, onFollowUp }) {
     onRun()
   }
 
+  if (item.legs) {
+    return (
+      <section className="panel">
+        <h2>{item.emoji} {item.title}</h2>
+        <div className="followups">
+          {item.legs.map((l) => (
+            <button key={l.id} type="button" className="btn secondary" onClick={() => { setOutput(`${l.name}: ${l.info}`); onRun() }}>{l.name}</button>
+          ))}
+        </div>
+        {output && <pre className="output">{output}</pre>}
+      </section>
+    )
+  }
+
   return (
     <form className="panel" onSubmit={submit}>
       <h2>{item.emoji} {item.title}</h2>
