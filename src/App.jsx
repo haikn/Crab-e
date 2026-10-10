@@ -13,6 +13,7 @@ export default function App() {
   const [emotion, setEmotion] = useState('neutral')
   const [subtitle, setSubtitle] = useState('')
   const [started, setStarted] = useState(false)
+  const [activity, setActivity] = useState(null)
   const [activeCase, setActiveCase] = useState(null)
   const { speak, cancel, speaking } = useSpeech()
 
@@ -54,12 +55,27 @@ export default function App() {
     speak('Done! Here is what I think.')
   }
 
+  const followUp = (f) => {
+    setActivity(null)
+    requestAnimationFrame(() => setActivity(f.id))
+    setSubtitle(f.say)
+    speak(f.say)
+    setTimeout(() => setActivity(null), 3000)
+  }
+
   const joinUrl = window.location.href
 
   return (
     <main className="app">
       {mode !== 'intro' && <button className="btn home" onClick={home}>⌂ Home</button>}
-      <CrabFace emotion={emotion} speaking={speaking} />
+      <CrabFace emotion={emotion} speaking={speaking} activity={activity} />
+      {activity === 'glitter' && (
+        <div className="glitter-screen" aria-hidden="true">
+          {Array.from({ length: 40 }, (_, i) => (
+            <span key={i} style={{ left: `${(i * 37) % 100}%`, top: `${(i * 53) % 100}%`, animationDelay: `${(i % 8) * 0.15}s` }}>✦</span>
+          ))}
+        </div>
+      )}
       <p className="subtitle" aria-live="polite">{subtitle}</p>
 
       {mode === 'intro' && (
@@ -86,7 +102,7 @@ export default function App() {
 
       {mode === 'case_active' && activeCase && (
         <>
-          <CaseActive item={activeCase} onRun={ran} />
+          <CaseActive item={activeCase} onRun={ran} onFollowUp={followUp} />
           <button className="btn secondary" onClick={() => { setMode('case_select'); setEmotion('neutral') }}>← All cases</button>
         </>
       )}

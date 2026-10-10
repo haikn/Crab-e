@@ -27,3 +27,10 @@ export const CASES = [
       `Goal: ${input}\n1. Bold: launch a viral campaign.\n2. Balanced: partner with a known brand.\n3. Safe: optimise your existing channels.`,
   },
 ]
+
+export const FOLLOW_UPS = [
+  { id: 'reshape', question: 'Do you want me to reshape it?', say: 'Let me reshape it!' },
+  { id: 'glitter', question: 'Do you want some glitter on it?', say: 'Sparkle time!' },
+  { id: 'snap', question: 'Do you want me to snap ideas from competitors to make yours stand out?', say: 'Snap snap! Grabbing ideas from competitors.' },
+  { id: 'rebuild', question: 'Do you want me to break down and rebuild your idea?', say: 'Breaking it down, then rebuilding it!' },
+]
