@@ -1,6 +1,7 @@
 import { useState } from 'react'
+import { FOLLOW_UPS } from '../cases.js'
 
-export default function CaseActive({ item, onRun }) {
+export default function CaseActive({ item, onRun, onFollowUp }) {
   const [input, setInput] = useState('')
   const [output, setOutput] = useState('')
 
@@ -17,6 +18,13 @@ export default function CaseActive({ item, onRun }) {
       <input value={input} onChange={(e) => setInput(e.target.value)} placeholder={item.placeholder} aria-label={item.title} />
       <button type="submit" className="btn">Ask Krabtec</button>
       {output && <pre className="output">{output}</pre>}
+      {output && (
+        <div className="followups">
+          {FOLLOW_UPS.map((f) => (
+            <button key={f.id} type="button" className="btn secondary" onClick={() => onFollowUp(f)}>{f.question}</button>
+          ))}
+        </div>
+      )}
     </form>
   )
 }
