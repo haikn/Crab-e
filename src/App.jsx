@@ -45,6 +45,7 @@ export default function App() {
     setMode('case_active')
     setEmotion('thinking')
     setSubtitle(`${item.title}: ${item.description}`)
+    speak(`${item.title}. ${item.description}`)
   }
 
   const ran = () => {
@@ -71,7 +72,7 @@ export default function App() {
         <section className="panel">
           <div className="qr"><QRCode value={joinUrl} size={180} /></div>
           <p>Waiting for someone to connect…</p>
-          <button className="btn" onClick={() => { setMode('case_select'); setSubtitle('What should we do?') }}>
+          <button className="btn" onClick={() => { setMode('case_select'); setSubtitle('What should we do?'); speak('What should we do?') }}>
             Choose a case
           </button>
         </section>

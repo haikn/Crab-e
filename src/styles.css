@@ -16,22 +16,26 @@ body { margin:0; background:radial-gradient(circle at top,#0b3a50,var(--bg)); co
 .card:hover { border-color:var(--accent); }
 .card-emoji { font-size:2rem; }
 
-.crab { position:relative; width:260px; height:200px; margin-top:1rem; }
-.crab-body { position:absolute; inset:50px 20px 0; background:var(--crab); border-radius:50% 50% 45% 45%; display:flex; flex-direction:column; align-items:center; }
-.claw { position:absolute; top:70px; width:60px; height:60px; background:var(--crab); border-radius:50% 50% 0 50%; }
+.crab { position:relative; width:300px; height:240px; margin-top:1rem; }
+.crab-body { position:absolute; inset:70px 20px 0; background:var(--crab); border-radius:50% 50% 45% 45%; display:flex; flex-direction:column; align-items:center; }
+.claw { position:absolute; top:100px; width:60px; height:60px; background:var(--crab); border-radius:50% 50% 0 50%; }
 .claw-left { left:-20px; transform:rotate(-20deg); }
 .claw-right { right:-20px; transform:scaleX(-1) rotate(-20deg); }
-.eyes { display:flex; gap:40px; margin-top:-40px; }
-.eye-stalk { width:14px; height:30px; background:var(--crab); display:flex; justify-content:center; }
-.eye { width:56px; height:56px; background:#fff; border-radius:50%; margin-top:-30px; display:flex; align-items:center; justify-content:center; animation:blink 4s infinite; overflow:hidden; }
-.pupil { width:22px; height:22px; background:#111; border-radius:50%; animation:look 6s infinite; }
-.mouth { margin-top:40px; width:60px; height:14px; background:#5a1500; border-radius:0 0 40px 40px; transition:all .2s; }
-.speaking .mouth { animation:talk .25s infinite alternate; }
+.eyes { display:flex; gap:36px; margin-top:-50px; }
+.eye-stalk { width:16px; height:40px; background:var(--crab); display:flex; justify-content:center; }
+.eye { width:84px; height:84px; border:3px solid #111; background:#fff; border-radius:50%; margin-top:-50px; display:flex; align-items:center; justify-content:center; animation:blink 4s infinite; overflow:hidden; }
+.pupil { position:relative; width:36px; height:36px; background:#111; border-radius:50%; animation:look 6s infinite; }
+.mouth { margin-top:36px; width:70px; height:14px; background:#5a1500; border-radius:0 0 40px 40px; transition:all .2s; overflow:hidden; position:relative; transform-origin:top center; }
+.mouth::after { content:''; position:absolute; left:20%; right:20%; bottom:-6px; height:12px; background:#ff8fa3; border-radius:50%; }
+.speaking .mouth { animation:talk .22s infinite alternate ease-in-out; }
 .emotion-happy .mouth { height:30px; width:80px; }
 .emotion-surprised .mouth { width:30px; height:36px; border-radius:50%; }
 .emotion-surprised .eye { transform:scale(1.25); }
 .emotion-thinking .mouth { width:36px; height:6px; border-radius:3px; transform:rotate(-10deg); }
-.emotion-thinking .pupil { animation:none; transform:translate(10px,-12px); }
+.emotion-thinking .pupil { animation:none; transform:translate(14px,-16px); }
 @keyframes blink { 0%,94%,100% { transform:scaleY(1); } 97% { transform:scaleY(.08); } }
-@keyframes look { 0%,40%,100% { transform:translateX(0); } 50%,70% { transform:translateX(-10px); } 80%,90% { transform:translateX(10px); } }
-@keyframes talk { from { height:8px; } to { height:34px; } }
+@keyframes look { 0%,40%,100% { transform:translateX(0); } 50%,70% { transform:translateX(-14px); } 80%,90% { transform:translateX(14px); } }
+@keyframes talk { from { height:8px; width:60px; } to { height:40px; width:50px; border-radius:0 0 50% 50%; } }
+
+.pupil::after { content:''; position:absolute; top:6px; left:8px; width:10px; height:10px; background:#fff; border-radius:50%; }
+@media (prefers-reduced-motion:reduce) { .eye,.pupil { animation:none; } }

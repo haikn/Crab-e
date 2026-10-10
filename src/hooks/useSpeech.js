@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 export default function useSpeech() {
   const [speaking, setSpeaking] = useState(false)
   const timer = useRef(null)
+  const utterance = useRef(null)
 
   const cancel = useCallback(() => {
     clearTimeout(timer.current)
@@ -27,8 +28,13 @@ export default function useSpeech() {
       const u = new SpeechSynthesisUtterance(text)
       u.lang = 'en-US'
       u.pitch = 1.4
+      u.rate = 1.05
+      const voices = window.speechSynthesis.getVoices?.() || []
+      const voice = voices.find((v) => v.lang?.startsWith('en') && /female|samantha|zira|google/i.test(v.name)) || voices.find((v) => v.lang?.startsWith('en'))
+      if (voice) u.voice = voice
       u.onend = done
       u.onerror = done
+      utterance.current = u // keep a reference so it is not garbage collected mid-speech
       window.speechSynthesis.speak(u)
       // safety net if the browser never fires events (e.g. autoplay blocked)
       timer.current = setTimeout(done, fallbackMs + 4000)
