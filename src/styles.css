@@ -16,9 +16,9 @@ body { margin:0; background:radial-gradient(circle at top,#0b3a50,var(--bg)); co
 .card:hover { border-color:var(--accent); }
 .card-emoji { font-size:2rem; }
 
-.crab { position:relative; width:300px; height:240px; margin-top:1rem; }
-.crab-body { position:absolute; inset:70px 20px 0; background:var(--crab); border-radius:50% 50% 45% 45%; display:flex; flex-direction:column; align-items:center; }
-.claw { position:absolute; top:100px; width:60px; height:60px; background:var(--crab); border-radius:50% 50% 0 50%; }
+.crab { position:relative; width:360px; height:290px; margin-top:1rem; }
+.crab-body { position:absolute; inset:84px 24px 0; background:var(--crab); border-radius:50% 50% 45% 45%; display:flex; flex-direction:column; align-items:center; }
+.claw { position:absolute; top:120px; width:76px; height:76px; background:var(--crab); border-radius:50% 50% 0 50%; }
 .claw-left { left:-20px; transform:rotate(-20deg); }
 .claw-right { right:-20px; transform:scaleX(-1) rotate(-20deg); }
 .eyes { display:flex; gap:36px; margin-top:-50px; }
@@ -38,4 +38,4 @@ body { margin:0; background:radial-gradient(circle at top,#0b3a50,var(--bg)); co
 @keyframes talk { from { height:8px; width:60px; } to { height:40px; width:50px; border-radius:0 0 50% 50%; } }
 
 .pupil::after { content:''; position:absolute; top:6px; left:8px; width:10px; height:10px; background:#fff; border-radius:50%; }
-@media (prefers-reduced-motion:reduce) { .eye,.pupil { animation:none; } }
+@media (prefers-reduced-motion:reduce) { .eye,.pupil,.speaking .mouth { animation:none; } }
