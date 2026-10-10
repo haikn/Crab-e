@@ -26,6 +26,27 @@ export const CASES = [
     run: (input) =>
       `Goal: ${input}\n1. Bold: launch a viral campaign.\n2. Balanced: partner with a known brand.\n3. Safe: optimise your existing channels.`,
   },
+  {
+    id: 'legs',
+    title: 'Tool Legs',
+    emoji: '🦵',
+    description: 'Tap a leg to see what each module can do.',
+    legs: [
+      { id: 'research', name: 'Research Leg', info: 'Gathers market signals and competitor facts.' },
+      { id: 'ideas', name: 'Ideation Leg', info: 'Turns rough thoughts into concept summaries.' },
+      { id: 'strategy', name: 'Strategy Leg', info: 'Proposes growth, awareness or conversion options.' },
+      { id: 'planning', name: 'Planning Leg', info: 'Breaks goals into simple action steps.' },
+    ],
+  },
+  {
+    id: 'plan',
+    title: 'Quick Plan',
+    emoji: '📝',
+    description: 'Tell me your goal and get a 3-step action plan.',
+    placeholder: 'e.g. Launch a pop-up crab cafe',
+    run: (input) =>
+      `Plan for: ${input}\n1. Define: write down who it is for and what success looks like.\n2. Build: create the smallest version you can show people.\n3. Test: get feedback from 5 people and improve.`,
+  },
 ]
 
 export const FOLLOW_UPS = [
